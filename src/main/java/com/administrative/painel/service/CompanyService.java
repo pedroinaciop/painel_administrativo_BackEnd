@@ -19,12 +19,10 @@ public class CompanyService {
         return convertData(companyRepository.findAll());
     }
 
-
     public List<CompanyDTO> convertData(List<Company> companies) {
         return companies
                 .stream()
                 .map(c -> new CompanyDTO(c.getCompany_id(), c.getCnpj(), c.getCorporateReason(), c.getStateRegistration(), c.getEmail(), c.getPhone(), c.getCep(), c.getStreet(), c.getNumberAddress(), c.getNeighborhood(), c.getCity(), c.getState(), c.getComplement(), c.getUpdateDate(), c.getUpdateUser()))
                 .collect(Collectors.toList());
     }
-
 }

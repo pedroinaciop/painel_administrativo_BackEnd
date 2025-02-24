@@ -9,6 +9,7 @@ public record UserDTO (
         String fullName,
         String email,
         String password,
+        String role,
         @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
         Date updateDate,
         String updateUser) {

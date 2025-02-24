@@ -16,6 +16,7 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
+    private String role;
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
     private Date updateDate;
     private String updateUser;
@@ -23,11 +24,12 @@ public class User {
     public User() {
     }
 
-    public User(Long user_id, String fullName, String email, String password) {
+    public User(Long user_id, String fullName, String email, String password, String role) {
         this.user_id = user_id;
         this.fullName = fullName;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     public User(UserDTO dados) {
@@ -35,6 +37,7 @@ public class User {
         this.fullName = dados.fullName();
         this.email = dados.email();
         this.password = dados.password();
+        this.role = dados.role();
         this.updateDate = dados.updateDate();
         this.updateUser = dados.updateUser();
     }
@@ -50,8 +53,13 @@ public class User {
     public String getEmail() {
         return email;
     }
+
     public String getPassword() {
         return password;
+    }
+
+    public String getRole() {
+        return role;
     }
 
     public Date getUpdateDate() {

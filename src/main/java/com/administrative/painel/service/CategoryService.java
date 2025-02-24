@@ -24,6 +24,4 @@ public class CategoryService {
                 .map(c -> new CategoryDTO(c.getCategory_id(), c.getCategoryName(), c.getUpdateDate(), c.getUpdateUser()))
                 .collect(Collectors.toList());
     }
-
-
 }

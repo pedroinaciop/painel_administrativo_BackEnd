@@ -25,5 +25,4 @@ public class ProductService {
             .map(p -> new ProductDTO(p.getProduct_id(), p.getProductName(), p.getReferenceCode(), p.getPrice(), p.getPricePromocional(), p.getProvider(),p.getStockAlert(), p.getColor(), p.getSize(), p.getBarCodeField(), p.getDescription(), p.getCategory(), p.getPackagingQuantity(), p.getUnity(), p.getNetWeight(), p.getGrossWeight(), p.getDimension(), p.getAnvisaRegister(), p.getOrigin(), p.getStockLocation(), p.getIcms(), p.getCfop(), p.getNcm(), p.getCst(), p.getImage(), p.getActive(), p.getSterility(), p.getFreeShipping(), p.getPerishable(), p.getUpdateDate(), p.getUpdateUser()))
             .collect(Collectors.toList());
     }
-
 }
