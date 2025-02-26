@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryService {
     @Autowired
-    private CategoryRepository categoryRepository;;
+    private CategoryRepository categoryRepository;
 
     public List<CategoryDTO> getCategories() {
         return(convertData(categoryRepository.findAll()));

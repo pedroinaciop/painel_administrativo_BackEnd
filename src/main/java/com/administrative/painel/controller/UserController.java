@@ -28,9 +28,9 @@ public class UserController {
         userRepository.save(new User(dados));
     }
 
-    @Transactional
-    @DeleteMapping("usuarios/{id}")
-    public void deleteUser(@PathVariable("id") Long id) {
-        userRepository.deleteById(id);
-    }
+    //@Transactional
+    //@DeleteMapping("usuarios/{id}")
+    //public void deleteUser(@PathVariable("id") Long id) {
+    //    userRepository.deleteById(id);
+    //}
 }

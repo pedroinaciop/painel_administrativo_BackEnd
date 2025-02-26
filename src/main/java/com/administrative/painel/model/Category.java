@@ -3,10 +3,8 @@ package com.administrative.painel.model;
 import com.administrative.painel.dto.CategoryDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
