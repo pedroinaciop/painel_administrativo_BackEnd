@@ -22,8 +22,7 @@ public class UserService {
     private List<UserDTO> convertData(List<User> users) {
         return users
                 .stream()
-                .map(u -> new UserDTO(u.getUser_id(), u.getFullName(), u.getEmail(), u.getPassword(), u.getUpdateDate(), u.getUpdateUser()))
+                .map(u -> new UserDTO(u.getUser_id(), u.getFullName(), u.getEmail(), u.getPassword(), u.getRole(), u.getUpdateDate(), u.getUpdateUser()))
                 .collect(Collectors.toList());
     }
-
 }
