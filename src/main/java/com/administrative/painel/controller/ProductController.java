@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/")
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;

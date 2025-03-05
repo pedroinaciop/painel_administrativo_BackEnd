@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/")
 public class CategoryController {
     @Autowired
     private CategoryRepository categoryRepository;
