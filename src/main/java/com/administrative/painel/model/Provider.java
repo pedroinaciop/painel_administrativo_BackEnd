@@ -69,4 +69,8 @@ public class Provider {
     public String getUpdateUser() {
         return updateUser;
     }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
 }

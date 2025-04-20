@@ -96,7 +96,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return fullName;
     }
 
     //Se for ADMIN, ele tem duas permissões: ROLE_ADMIN e ROLE_USER.

@@ -34,13 +34,6 @@ public class Category {
         this.updateUser = dados.updateUser();
     }
 
-    public Category(Long category_id, String categoryName, Date updateDate, String updateUser) {
-        this.category_id = category_id;
-        this.categoryName = categoryName;
-        this.updateDate = updateDate;
-        this.updateUser = updateUser;
-    }
-
     public List<Product> getProducts() {
         return products;
     }
@@ -59,6 +52,18 @@ public class Category {
 
     public String getUpdateUser() {
         return updateUser;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 }
 

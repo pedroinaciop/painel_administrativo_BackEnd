@@ -27,22 +27,29 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody AuthenticationDTO data) {
-        var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
-        var auth = authenticationManager.authenticate(usernamePassword);
+        if (this.userRepository.findByEmail(data.login()) == null ) {
+            return ResponseEntity.status(404).body("Acesso negado, usuário ou senha incorretos!");
+        }
 
-        var token = tokenService.generateToken((User) auth.getPrincipal());
-
-        return ResponseEntity.ok(new LoginResponseDTO(token));
+        try {
+            var user = userRepository.findByEmail(data.login());
+            var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
+            var auth = authenticationManager.authenticate(usernamePassword);
+            var token = tokenService.generateToken((User) auth.getPrincipal());
+            return ResponseEntity.ok(new LoginResponseDTO(user.getUsername(), token));
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body("Acesso negado, usuário ou senha incorretos!");
+        }
     }
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
-        if (this.userRepository.findByEmail(data.login()) != null) return ResponseEntity.badRequest().build();
+        if (this.userRepository.findByEmail(data.login()) != null) {
+            return ResponseEntity.badRequest().build();
+        }
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
         User newUser = new User(data.fullName(), data.login(), encryptedPassword, data.updateDate(), data.role());
-
         this.userRepository.save(newUser);
-
         return ResponseEntity.ok().build();
     }
 }

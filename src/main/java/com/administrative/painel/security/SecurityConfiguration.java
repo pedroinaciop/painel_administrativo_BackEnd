@@ -36,7 +36,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
+                        //.anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
@@ -57,10 +58,9 @@ public class SecurityConfiguration {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
-                "http://localhost:3000",
-                "https://adminpainel.store",
-                "https://painel-administrativo-tau.vercel.app"
-        ));
+        "http://localhost:3000/"));
+        //"https://adminpainel.store",
+        //"https://painel-administrativo-tau.vercel.app"
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

@@ -1,7 +1,7 @@
 package com.administrative.painel.controller;
 
+import com.administrative.painel.dto.EditCategoryDTO;
 import com.administrative.painel.repository.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.administrative.painel.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
 import com.administrative.painel.dto.CategoryDTO;
@@ -12,11 +12,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/")
 public class CategoryController {
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
 
-    @Autowired
-    private CategoryService categoryService;
+    public CategoryController(CategoryRepository categoryRepository, CategoryService categoryService) {
+        this.categoryRepository = categoryRepository;
+        this.categoryService = categoryService;
+    }
 
     @GetMapping("/categorias")
     public List<CategoryDTO> findAllCategories() {
@@ -30,8 +32,19 @@ public class CategoryController {
     }
 
     @Transactional
-    @DeleteMapping("categorias/{id}")
+    @DeleteMapping("/categorias/{id}")
     public void deleteCategory(@PathVariable("id") Long id) {
         categoryRepository.deleteById(id);
+    }
+
+    @GetMapping("/editar/categorias/{id}")
+    public CategoryDTO findCategoryByID(@PathVariable("id") Long id) {
+        return categoryService.getCategoryDTO(id);
+    }
+
+    @Transactional
+    @PutMapping("/editar/categorias/{id}")
+    public void editCategoryByID(@PathVariable("id") Long id, @RequestBody EditCategoryDTO dto) {
+        categoryService.editCategoryByID(id, dto.categoryName(), dto.updateDate(), dto.updateUser());
     }
 }
