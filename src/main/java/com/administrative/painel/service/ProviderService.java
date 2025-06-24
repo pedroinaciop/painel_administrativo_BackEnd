@@ -35,7 +35,7 @@ public class ProviderService {
 
     public void editProvider(Long id, String providerName) {
         Provider provider = getProviderById(id);
-        provider.setProvider(providerName);
+        provider.setProviderName(providerName);
 
         providerRepository.save(provider);
     }
@@ -43,7 +43,7 @@ public class ProviderService {
     //Converte fornecedores para fornecedoresDTO
     public ProviderDTO convertData(Optional<Provider> provider) {
         return provider
-                .map(p -> new ProviderDTO(p.getProvider_id(), p.getCnpj(), p.getProvider(), p.getUpdateDate(), p.getUpdateUser()))
+                .map(p -> new ProviderDTO(p.getProvider_id(), p.getCnpj(), p.getProviderName(), p.getUpdateDate(), p.getUpdateUser()))
                 .orElseThrow(() -> new EntityNotFoundException("Categoria não encontrada!"));
     }
 
@@ -51,7 +51,7 @@ public class ProviderService {
     public List<ProviderDTO> convertDataList(List<Provider> providers) {
         return providers
                 .stream()
-                .map(p -> new ProviderDTO(p.getProvider_id(), p.getCnpj(), p.getProvider(), p.getUpdateDate(), p.getUpdateUser()))
+                .map(p -> new ProviderDTO(p.getProvider_id(), p.getCnpj(), p.getProviderName(), p.getUpdateDate(), p.getUpdateUser()))
                 .collect(Collectors.toList());
     }
 }

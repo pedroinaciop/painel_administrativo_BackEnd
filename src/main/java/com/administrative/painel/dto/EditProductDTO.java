@@ -7,8 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public record ProductDTO (
-        Long product_id,
+public record EditProductDTO(
         String productName,
         String referenceCode,
         BigDecimal price,
@@ -39,5 +38,4 @@ public record ProductDTO (
         Boolean perishable,
         @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
         Date updateDate,
-        String updateUser) {
-}
+        String updateUser) {}

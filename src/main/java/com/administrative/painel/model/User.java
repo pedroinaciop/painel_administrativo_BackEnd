@@ -21,7 +21,6 @@ public class User implements UserDetails {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
 
-    @Column(length = 60)
     private String fullName;
 
     @Column(unique = true)
@@ -33,7 +32,7 @@ public class User implements UserDetails {
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
     private Date updateDate;
-
+    
     private String updateUser;
 
     public User() {}

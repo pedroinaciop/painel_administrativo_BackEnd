@@ -19,6 +19,7 @@ public class Category {
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
     private Date updateDate;
+    @Column(length = 50)
     private String updateUser;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -66,4 +67,3 @@ public class Category {
         this.updateDate = updateDate;
     }
 }
-
