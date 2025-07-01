@@ -4,7 +4,8 @@ import com.administrative.painel.dto.ProviderDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import java.util.Date;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.*;
 
@@ -21,9 +22,17 @@ public class Provider {
     private String providerName;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
-    private Date updateDate;
+    private LocalDateTime updateDate;
+
     @Column(length = 50)
     private String updateUser;
+
+    @Column(updatable = false)
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
+    private LocalDateTime createDate;
+
+    @Column(length = 50, updatable = false)
+    private String createUser;
 
     @OneToMany(mappedBy = "provider", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
@@ -37,14 +46,18 @@ public class Provider {
         this.providerName = dados.provider();
         this.updateDate = dados.updateDate();
         this.updateUser = dados.updateUser();
+        this.createDate = dados.createDate();
+        this.createUser = dados.createUser();
     }
 
-    public Provider(Long provider_id, String cnpj, String providerName, Date updateDate, String updateUser) {
+    public Provider(Long provider_id, String cnpj, String providerName, LocalDateTime updateDate, String updateUser, LocalDateTime createDate, String createUser) {
         this.provider_id = provider_id;
         this.cnpj = cnpj;
         this.providerName = providerName;
         this.updateDate = updateDate;
         this.updateUser = updateUser;
+        this.createDate = createDate;
+        this.createUser = createUser;
     }
 
     public List<Product> getProducts() {
@@ -63,7 +76,7 @@ public class Provider {
         return providerName;
     }
 
-    public Date getUpdateDate() {
+    public LocalDateTime getUpdateDate() {
         return updateDate;
     }
 
@@ -79,7 +92,15 @@ public class Provider {
         this.updateUser = updateUser;
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public String getCreateUser() {
+        return createUser;
     }
 }

@@ -5,9 +5,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
+@Setter
+@Getter
 @EqualsAndHashCode(of = "category_id")
 @Entity(name = "categories")
 public class Category {
@@ -18,9 +20,17 @@ public class Category {
     private String categoryName;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
-    private Date updateDate;
+    private LocalDateTime updateDate;
+
     @Column(length = 50)
     private String updateUser;
+
+    @Column(updatable = false)
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
+    private LocalDateTime createDate;
+
+    @Column(length = 50, updatable = false)
+    private String createUser;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
@@ -33,37 +43,7 @@ public class Category {
         this.categoryName = dados.categoryName();
         this.updateDate = dados.updateDate();
         this.updateUser = dados.updateUser();
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public Long getCategory_id() {
-        return category_id;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public String getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public void setUpdateUser(String updateUser) {
-        this.updateUser = updateUser;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+        this.createDate = dados.createDate();
+        this.createUser = dados.createUser();
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -38,18 +39,18 @@ public class ProductService {
 
     public ProductDTO convertProduct(Optional<Product> product) {
         return product
-                .map(p -> new ProductDTO(p.getProduct_id(), p.getProductName(), p.getReferenceCode(), p.getPrice(), p.getPricePromocional(), p.getProvider(), p.getStockAlert(), p.getColor(), p.getProductSize(), p.getBarCodeField(), p.getDescription(), p.getCategory(), p.getPackagingQuantity(), p.getUnity(), p.getNetWeight(), p.getGrossWeight(), p.getDimension(), p.getAnvisaRegister(), p.getOrigin(), p.getStockLocation(), p.getIcms(), p.getCfop(), p.getNcm(), p.getCst(), p.getImage(), p.getActive(), p.getSterility(), p.getFreeShipping(), p.getPerishable(), p.getUpdateDate(), p.getUpdateUser()))
+                .map(p -> new ProductDTO(p.getProduct_id(), p.getProductName(), p.getReferenceCode(), p.getPrice(), p.getPricePromocional(), p.getProvider(), p.getStockAlert(), p.getColor(), p.getProductSize(), p.getBarCodeField(), p.getDescription(), p.getCategory(), p.getPackagingQuantity(), p.getUnity(), p.getNetWeight(), p.getGrossWeight(), p.getDimension(), p.getAnvisaRegister(), p.getOrigin(), p.getStockLocation(), p.getIcms(), p.getCfop(), p.getNcm(), p.getCst(), p.getImage(), p.getActive(), p.getSterility(), p.getFreeShipping(), p.getPerishable(), p.getUpdateDate(), p.getUpdateUser(), p.getCreateDate(), p.getCreateUser()))
                 .orElseThrow(() -> new EntityNotFoundException("Produto não encontrado"));
     }
 
     private List<ProductDTO> convertData(List<Product> products) {
         return products
             .stream()
-            .map(p -> new ProductDTO(p.getProduct_id(), p.getProductName(), p.getReferenceCode(), p.getPrice(), p.getPricePromocional(), p.getProvider(),p.getStockAlert(), p.getColor(), p.getProductSize(), p.getBarCodeField(), p.getDescription(), p.getCategory(), p.getPackagingQuantity(), p.getUnity(), p.getNetWeight(), p.getGrossWeight(), p.getDimension(), p.getAnvisaRegister(), p.getOrigin(), p.getStockLocation(), p.getIcms(), p.getCfop(), p.getNcm(), p.getCst(), p.getImage(), p.getActive(), p.getSterility(), p.getFreeShipping(), p.getPerishable(), p.getUpdateDate(), p.getUpdateUser()))
+            .map(p -> new ProductDTO(p.getProduct_id(), p.getProductName(), p.getReferenceCode(), p.getPrice(), p.getPricePromocional(), p.getProvider(),p.getStockAlert(), p.getColor(), p.getProductSize(), p.getBarCodeField(), p.getDescription(), p.getCategory(), p.getPackagingQuantity(), p.getUnity(), p.getNetWeight(), p.getGrossWeight(), p.getDimension(), p.getAnvisaRegister(), p.getOrigin(), p.getStockLocation(), p.getIcms(), p.getCfop(), p.getNcm(), p.getCst(), p.getImage(), p.getActive(), p.getSterility(), p.getFreeShipping(), p.getPerishable(), p.getUpdateDate(), p.getUpdateUser(), p.getCreateDate(), p.getCreateUser()))
             .collect(Collectors.toList());
     }
 
-    public void editProduct(Long id, String productName, String referenceCode, BigDecimal price, BigDecimal pricePromocional, Provider provider, Integer stockAlert, String color, String size, String barCodeField, String description, Category category, Integer packagingQuantity, String unity, Double netWeight, Double grossWeight, String dimension, String anvisaRegister, String origin, String stockLocation, BigDecimal icms, String cfop, String ncm, String cst, String image, Boolean active, Boolean sterility, Boolean freeShipping, Boolean perishable,  Date updateDate, String updateUser) {
+    public void editProduct(Long id, String productName, String referenceCode, BigDecimal price, BigDecimal pricePromocional, Provider provider, Integer stockAlert, String color, String size, String barCodeField, String description, Category category, Integer packagingQuantity, String unity, Double netWeight, Double grossWeight, String dimension, String anvisaRegister, String origin, String stockLocation, BigDecimal icms, String cfop, String ncm, String cst, String image, Boolean active, Boolean sterility, Boolean freeShipping, Boolean perishable, LocalDateTime updateDate, String updateUser) {
         Product product = getProductByID(id);
 
         product.setProductName(productName);

@@ -2,6 +2,7 @@ package com.administrative.painel.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public record CompanyDTO(
@@ -18,7 +19,12 @@ public record CompanyDTO(
                  String city,
                  String state,
                  String complement,
+
                  @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
-                 Date updateDate,
-                 String updateUser) {
+                 LocalDateTime updateDate,
+                 String updateUser,
+
+                 @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
+                 LocalDateTime createDate,
+                 String createUser) {
 }

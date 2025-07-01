@@ -1,12 +1,16 @@
 package com.administrative.painel.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
-public record ProviderDTO(
-        Long provider_id,
-        String cnpj,
-        String provider,
+public record CityDTO (
+        Long city_id,
+
+        String cityName,
+        String uf,
+        Integer ibgeCode,
+        String countryCode,
 
         @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
         LocalDateTime updateDate,

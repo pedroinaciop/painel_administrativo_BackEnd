@@ -3,6 +3,8 @@ package com.administrative.painel.model;
 import com.administrative.painel.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -31,9 +33,17 @@ public class User implements UserDetails {
     private UserRole role;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
-    private Date updateDate;
-    
+    private LocalDateTime updateDate;
+
+    @Column(length = 50)
     private String updateUser;
+
+    @Column(updatable = false)
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
+    private LocalDateTime createDate;
+
+    @Column(length = 50, updatable = false)
+    private String createUser;
 
     public User() {}
 
@@ -53,9 +63,11 @@ public class User implements UserDetails {
         this.role = dados.role();
         this.updateDate = dados.updateDate();
         this.updateUser = dados.updateUser();
+        this.createDate = dados.createDate();
+        this.createUser = dados.createUser();
     }
 
-    public User(String fullName, String login, String encryptedPassword, Date updateDate, UserRole role) {
+    public User(String fullName, String login, String encryptedPassword, LocalDateTime updateDate, UserRole role) {
         this.fullName = fullName;
         this.email = login;
         this.password = encryptedPassword;
@@ -75,7 +87,7 @@ public class User implements UserDetails {
         return email;
     }
 
-    public Date getUpdateDate() {
+    public LocalDateTime getUpdateDate() {
         return updateDate;
     }
 
@@ -89,6 +101,14 @@ public class User implements UserDetails {
 
     public UserRole getRole() {
         return role;
+    }
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public String getCreateUser() {
+        return createUser;
     }
 
     //Métodos do UserDetails

@@ -3,6 +3,8 @@ package com.administrative.painel.model;
 import com.administrative.painel.dto.CompanyDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.*;
 
@@ -49,9 +51,17 @@ public class Company {
     private String complement;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
-    private Date updateDate;
+    private LocalDateTime updateDate;
+
     @Column(length = 50)
     private String updateUser;
+
+    @Column(updatable = false)
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
+    private LocalDateTime createDate;
+
+    @Column(length = 50, updatable = false)
+    private String createUser;
 
     public Company() {
     }
@@ -72,9 +82,11 @@ public class Company {
         this.complement = dados.complement();
         this.updateDate = dados.updateDate();
         this.updateUser = dados.updateUser();
+        this.createUser = dados.createUser();
+        this.createDate = dados.createDate();
     }
 
-    public Company(Long company_id, String cnpj, String corporateReason, String stateRegistration, String email, String phone, String cep, String street, Integer numberAddress, String neighborhood, String city, String state, String complement, Date updateDate, String updateUser) {
+    public Company(Long company_id, String cnpj, String corporateReason, String stateRegistration, String email, String phone, String cep, String street, Integer numberAddress, String neighborhood, String city, String state, String complement, LocalDateTime updateDate, String updateUser, String createUser, LocalDateTime createDate) {
         this.company_id = company_id;
         this.cnpj = cnpj;
         this.corporateReason = corporateReason;
@@ -90,6 +102,9 @@ public class Company {
         this.complement = complement;
         this.updateDate = updateDate;
         this.updateUser = updateUser;
+        this.createDate = createDate;
+        this.createUser = createUser;
+
     }
 
     public Long getCompany_id() {
@@ -144,7 +159,7 @@ public class Company {
         return complement;
     }
 
-    public Date getUpdateDate() {
+    public LocalDateTime getUpdateDate() {
         return updateDate;
     }
 
@@ -196,11 +211,19 @@ public class Company {
         this.complement = complement;
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
     }
 
     public void setUpdateUser(String updateUser) {
         this.updateUser = updateUser;
+    }
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public String getCreateUser() {
+        return createUser;
     }
 }

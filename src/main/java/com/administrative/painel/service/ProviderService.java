@@ -6,6 +6,7 @@ import com.administrative.painel.repository.ProviderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -33,9 +34,11 @@ public class ProviderService {
                 .orElseThrow(() -> new EntityNotFoundException("Fornecedor não encontrado!"));
     }
 
-    public void editProvider(Long id, String providerName) {
+    public void editProvider(Long id, String providerName, LocalDateTime updateDate, String updateUser) {
         Provider provider = getProviderById(id);
         provider.setProviderName(providerName);
+        provider.setUpdateDate(updateDate);
+        provider.setUpdateUser(updateUser);
 
         providerRepository.save(provider);
     }
@@ -43,7 +46,7 @@ public class ProviderService {
     //Converte fornecedores para fornecedoresDTO
     public ProviderDTO convertData(Optional<Provider> provider) {
         return provider
-                .map(p -> new ProviderDTO(p.getProvider_id(), p.getCnpj(), p.getProviderName(), p.getUpdateDate(), p.getUpdateUser()))
+                .map(p -> new ProviderDTO(p.getProvider_id(), p.getCnpj(), p.getProviderName(), p.getUpdateDate(), p.getUpdateUser(), p.getCreateDate(), p.getCreateUser()))
                 .orElseThrow(() -> new EntityNotFoundException("Categoria não encontrada!"));
     }
 
@@ -51,7 +54,7 @@ public class ProviderService {
     public List<ProviderDTO> convertDataList(List<Provider> providers) {
         return providers
                 .stream()
-                .map(p -> new ProviderDTO(p.getProvider_id(), p.getCnpj(), p.getProviderName(), p.getUpdateDate(), p.getUpdateUser()))
+                .map(p -> new ProviderDTO(p.getProvider_id(), p.getCnpj(), p.getProviderName(), p.getUpdateDate(), p.getUpdateUser(), p.getCreateDate(), p.getCreateUser()))
                 .collect(Collectors.toList());
     }
 }

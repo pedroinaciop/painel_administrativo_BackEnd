@@ -4,6 +4,7 @@ import com.administrative.painel.dto.ProductDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.*;
 
@@ -85,15 +86,22 @@ public class Product {
     private Boolean perishable;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
-    private Date updateDate;
+    private LocalDateTime updateDate;
 
     @Column(length = 50)
     private String updateUser;
 
+    @Column(updatable = false)
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
+    private LocalDateTime createDate;
+
+    @Column(length = 50, updatable = false)
+    private String createUser;
+
     public Product() {
     }
 
-    public Product(Long product_id, String productName, String referenceCode, BigDecimal price, BigDecimal pricePromocional, Provider provider, Integer stockAlert, String color, String size, String barCodeField, String description, Category category, Integer packagingQuantity, String unity, Double netWeight, Double grossWeight, String dimension, String anvisaRegister, String origin, String stockLocation, BigDecimal icms, String cfop, String ncm, String cst, String image, Boolean active, Boolean sterility, Boolean freeShipping, Boolean perishable, Date updateDate, String updateUser) {
+    public Product(Long product_id, String productName, String referenceCode, BigDecimal price, BigDecimal pricePromocional, Provider provider, Integer stockAlert, String color, String size, String barCodeField, String description, Category category, Integer packagingQuantity, String unity, Double netWeight, Double grossWeight, String dimension, String anvisaRegister, String origin, String stockLocation, BigDecimal icms, String cfop, String ncm, String cst, String image, Boolean active, Boolean sterility, Boolean freeShipping, Boolean perishable, LocalDateTime updateDate, String updateUser, LocalDateTime createDate, String createUser) {
         this.product_id = product_id;
         this.productName = productName;
         this.referenceCode = referenceCode;
@@ -125,6 +133,8 @@ public class Product {
         this.perishable = perishable;
         this.updateDate = updateDate;
         this.updateUser = updateUser;
+        this.createDate = createDate;
+        this.createUser = createUser;
     }
 
     public Product(ProductDTO dados) {
@@ -159,6 +169,8 @@ public class Product {
         this.perishable = dados.perishable();
         this.updateDate = dados.updateDate();
         this.updateUser = dados.updateUser();
+        this.createUser = dados.createUser();
+        this.createDate = dados.createDate();
     }
 
     public Long getProduct_id() {
@@ -389,11 +401,11 @@ public class Product {
         this.perishable = perishable;
     }
 
-    public Date getUpdateDate() {
+    public LocalDateTime getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
     }
 
@@ -403,6 +415,14 @@ public class Product {
 
     public void setUpdateUser(String updateUser) {
         this.updateUser = updateUser;
+    }
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public String getCreateUser() {
+        return createUser;
     }
 }
 

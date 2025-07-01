@@ -6,6 +6,7 @@ import com.administrative.painel.repository.CategoryRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +33,7 @@ public class CategoryService {
         return(convertData(categoryRepository.findById(id)));
     }
 
-    public void editCategoryByID(Long id, String categoryName, Date date, String updateUser) {
+    public void editCategoryByID(Long id, String categoryName, LocalDateTime date, String updateUser) {
         Category category = getCategoryById(id);
 
         category.setCategoryName(categoryName);
@@ -44,14 +45,14 @@ public class CategoryService {
 
     public CategoryDTO convertData(Optional<Category> category) {
         return category
-                .map(c -> new CategoryDTO(c.getCategory_id(), c.getCategoryName(), c.getUpdateDate(), c.getUpdateUser()))
+                .map(c -> new CategoryDTO(c.getCategory_id(), c.getCategoryName(), c.getUpdateDate(), c.getUpdateUser(), c.getCreateDate(), c.getCreateUser()))
                 .orElseThrow(() -> new EntityNotFoundException("Categoria não encontrada!"));
     }
 
     public List<CategoryDTO> convertDataList(List<Category> categories) {
         return categories
                 .stream()
-                .map(c -> new CategoryDTO(c.getCategory_id(), c.getCategoryName(), c.getUpdateDate(), c.getUpdateUser()))
+                .map(c -> new CategoryDTO(c.getCategory_id(), c.getCategoryName(), c.getUpdateDate(), c.getUpdateUser(), c.getCreateDate(), c.getCreateUser()))
                 .collect(Collectors.toList());
     }
 }

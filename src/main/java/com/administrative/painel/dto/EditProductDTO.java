@@ -5,7 +5,7 @@ import com.administrative.painel.model.Provider;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public record EditProductDTO(
         String productName,
@@ -37,5 +37,8 @@ public record EditProductDTO(
         Boolean freeShipping,
         Boolean perishable,
         @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
-        Date updateDate,
-        String updateUser) {}
+        LocalDateTime updateDate,
+        String updateUser,
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
+        LocalDateTime createDate,
+        String createUser) {}

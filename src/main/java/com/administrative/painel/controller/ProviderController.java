@@ -46,6 +46,6 @@ public class ProviderController {
     @Transactional
     @PutMapping("editar/fornecedores/{id}")
     public void editProvider(@PathVariable("id") Long id, @RequestBody EditProviderDTO dto) {
-        providerService.editProvider(id, dto.providerName());
+        providerService.editProvider(id, dto.providerName(), dto.updateDate(), dto.updateUser());
     }
 }

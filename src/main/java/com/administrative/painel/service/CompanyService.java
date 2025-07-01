@@ -9,6 +9,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +34,7 @@ public class CompanyService {
                 .orElseThrow(() -> new EntityNotFoundException("Empresa não encontrada"));
     }
 
-    public void editCompany(Long id, String corporateReason, String stateRegistration, String email, String phone, String cep, String street, Integer numberAddress, String neighborhood, String city, String state, String complement, Date date, String updateUser) {
+    public void editCompany(Long id, String corporateReason, String stateRegistration, String email, String phone, String cep, String street, Integer numberAddress, String neighborhood, String city, String state, String complement, LocalDateTime date, String updateUser) {
         Company company = getCompanyByID(id);
 
         company.setCorporateReason(corporateReason);
@@ -55,14 +56,14 @@ public class CompanyService {
 
     public CompanyDTO convertCompany(Optional<Company> company) {
         return company
-                .map(c -> new CompanyDTO(c.getCompany_id(), c.getCnpj(), c.getCorporateReason(), c.getStateRegistration(), c.getEmail(), c.getPhone(), c.getCep(), c.getStreet(), c.getNumberAddress(), c.getNeighborhood(), c.getCity(), c.getState(), c.getComplement(), c.getUpdateDate(), c.getUpdateUser()))
+                .map(c -> new CompanyDTO(c.getCompany_id(), c.getCnpj(), c.getCorporateReason(), c.getStateRegistration(), c.getEmail(), c.getPhone(), c.getCep(), c.getStreet(), c.getNumberAddress(), c.getNeighborhood(), c.getCity(), c.getState(), c.getComplement(), c.getUpdateDate(), c.getUpdateUser(), c.getCreateDate(), c.getCreateUser()))
                 .orElseThrow(() -> new EntityNotFoundException("Empresa não encontrada"));
     }
 
     public List<CompanyDTO> convertCompanies(List<Company> companies) {
         return companies
                 .stream()
-                .map(c -> new CompanyDTO(c.getCompany_id(), c.getCnpj(), c.getCorporateReason(), c.getStateRegistration(), c.getEmail(), c.getPhone(), c.getCep(), c.getStreet(), c.getNumberAddress(), c.getNeighborhood(), c.getCity(), c.getState(), c.getComplement(), c.getUpdateDate(), c.getUpdateUser()))
+                .map(c -> new CompanyDTO(c.getCompany_id(), c.getCnpj(), c.getCorporateReason(), c.getStateRegistration(), c.getEmail(), c.getPhone(), c.getCep(), c.getStreet(), c.getNumberAddress(), c.getNeighborhood(), c.getCity(), c.getState(), c.getComplement(), c.getUpdateDate(), c.getUpdateUser(), c.getCreateDate(), c.getCreateUser()))
                 .collect(Collectors.toList());
     }
 }
