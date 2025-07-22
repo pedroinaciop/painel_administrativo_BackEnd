@@ -1,4 +1,4 @@
-package com.administrative.painel.model;
+package com.administrative.painel.enums;
 
 public enum UserRole {
     ADMIN("admin"),

@@ -1,12 +1,12 @@
 package com.administrative.painel.model;
 
 import com.administrative.painel.dto.UserDTO;
+import com.administrative.painel.enums.UserRole;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import lombok.*;
@@ -14,7 +14,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
+@Setter
+@Getter
 @Entity(name = "users")
 @EqualsAndHashCode(of = "user_id")
 

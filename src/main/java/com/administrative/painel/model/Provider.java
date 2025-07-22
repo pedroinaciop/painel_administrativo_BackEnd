@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import lombok.*;
 
+@Setter
+@Getter
 @EqualsAndHashCode(of = "provider_id")
 @Entity(name = "providers")
 public class Provider {
@@ -58,49 +60,5 @@ public class Provider {
         this.updateUser = updateUser;
         this.createDate = createDate;
         this.createUser = createUser;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public Long getProvider_id() {
-        return provider_id;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public String getProviderName() {
-        return providerName;
-    }
-
-    public LocalDateTime getUpdateDate() {
-        return updateDate;
-    }
-
-    public String getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setProviderName(String providerName) {
-        this.providerName = providerName;
-    }
-
-    public void setUpdateUser(String updateUser) {
-        this.updateUser = updateUser;
-    }
-
-    public void setUpdateDate(LocalDateTime updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public LocalDateTime getCreateDate() {
-        return createDate;
-    }
-
-    public String getCreateUser() {
-        return createUser;
     }
 }

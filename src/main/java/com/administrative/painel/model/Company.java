@@ -3,11 +3,12 @@ package com.administrative.painel.model;
 import com.administrative.painel.dto.CompanyDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
-import java.util.Date;
 import lombok.*;
 
+
+@Setter
+@Getter
 @EqualsAndHashCode(of = "company_id")
 @Entity(name = "companies")
 public class Company {
@@ -105,125 +106,5 @@ public class Company {
         this.createDate = createDate;
         this.createUser = createUser;
 
-    }
-
-    public Long getCompany_id() {
-        return company_id;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public String getCorporateReason() {
-        return corporateReason;
-    }
-
-    public String getStateRegistration() {
-        return stateRegistration;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public Integer getNumberAddress() {
-        return numberAddress;
-    }
-
-    public String getNeighborhood() {
-        return neighborhood;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public String getComplement() {
-        return complement;
-    }
-
-    public LocalDateTime getUpdateDate() {
-        return updateDate;
-    }
-
-    public String getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setCorporateReason(String corporateReason) {
-        this.corporateReason = corporateReason;
-    }
-
-    public void setStateRegistration(String stateRegistration) {
-        this.stateRegistration = stateRegistration;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public void setNumberAddress(Integer numberAddress) {
-        this.numberAddress = numberAddress;
-    }
-
-    public void setNeighborhood(String neighborhood) {
-        this.neighborhood = neighborhood;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public void setComplement(String complement) {
-        this.complement = complement;
-    }
-
-    public void setUpdateDate(LocalDateTime updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public void setUpdateUser(String updateUser) {
-        this.updateUser = updateUser;
-    }
-
-    public LocalDateTime getCreateDate() {
-        return createDate;
-    }
-
-    public String getCreateUser() {
-        return createUser;
     }
 }

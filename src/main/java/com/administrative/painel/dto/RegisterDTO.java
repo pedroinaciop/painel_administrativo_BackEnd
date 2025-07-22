@@ -1,10 +1,9 @@
 package com.administrative.painel.dto;
 
-import com.administrative.painel.model.UserRole;
+import com.administrative.painel.enums.UserRole;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public record RegisterDTO(String fullName,
                           String login,
