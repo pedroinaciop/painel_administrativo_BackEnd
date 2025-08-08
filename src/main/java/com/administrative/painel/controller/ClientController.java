@@ -23,6 +23,7 @@ public class ClientController {
         this.clientService = clientService;
     }
 
+    @Transactional
     @PostMapping("/cadastros/clientes/novo")
     public void registerClient(@RequestBody ClientDTO client) {
         clientRepository.save(new Client(client));
@@ -39,7 +40,7 @@ public class ClientController {
         return clientService.getClients();
     }
 
-    @GetMapping("/clientes/{id}")
+    @GetMapping("/editar/clientes/{id}")
     public ClientDTO getClientById(@PathVariable Long id) {
         return clientService.getClientDTOById(id);
     }
@@ -47,6 +48,6 @@ public class ClientController {
     @Transactional
     @PutMapping("/editar/clientes/{id}")
     public void editClientByID(@PathVariable("id") Long id, @RequestBody EditClientDTO dto) {
-        clientService.editClient(id, dto.clientType(), dto.active(), dto.fullName(), dto.gender(), dto.birthDate(), dto.cpfCnpj(), dto.division(), dto.rg(), dto.email(), dto.phone(), dto.secondaryPhone(), dto.cep(), dto.street(), dto.numberAddress(), dto.neighborhood(), dto.city(), dto.ibgeCityCode(), dto.state(),dto.complement(), dto.notes(), dto.updateDate(), dto.updateUser());
+        clientService.editClient(id, dto.clientType(), dto.active(), dto.fullName(), dto.fantasyName(), dto.stateRegistration(), dto.municipalRegistration(), dto.statusTax(), dto.birthDate(), dto.cpfCnpj(), dto.rg(), dto.email(), dto.phone(), dto.secondaryPhone(), dto.cep(), dto.street(), dto.numberAddress(), dto.neighborhood(), dto.city(), dto.ibgeCityCode(), dto.state(), dto.country(), dto.complement(), dto.notes(), dto.exemptStateRegistration(), dto.taxRegimeCode(), dto.updateDate(), dto.updateUser());
     }
 }

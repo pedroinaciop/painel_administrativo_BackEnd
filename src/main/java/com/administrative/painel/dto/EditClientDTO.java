@@ -1,7 +1,8 @@
 package com.administrative.painel.dto;
 
 import com.administrative.painel.enums.ClientType;
-import com.administrative.painel.enums.Gender;
+import com.administrative.painel.enums.StatusTax;
+import com.administrative.painel.enums.TaxRegimeCode;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
@@ -13,16 +14,20 @@ public record EditClientDTO(
         boolean active,
 
         String fullName,
-        Gender gender,
+        String fantasyName,
         @JsonFormat(pattern = "dd/MM/yyyy", timezone = "America/Sao_Paulo")
         LocalDate birthDate,
 
         String cpfCnpj,
-        String division,
+        String stateRegistration,
+        String municipalRegistration,
+        StatusTax statusTax,
         String rg,
         String email,
         String phone,
         String secondaryPhone,
+        Boolean exemptStateRegistration,
+        TaxRegimeCode taxRegimeCode,
 
         String cep,
         String street,
@@ -31,6 +36,7 @@ public record EditClientDTO(
         String city,
         String ibgeCityCode,
         String state,
+        String country,
         String complement,
         String notes,
 
