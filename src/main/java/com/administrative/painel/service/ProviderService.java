@@ -57,4 +57,14 @@ public class ProviderService {
                 .map(p -> new ProviderDTO(p.getProvider_id(), p.getCnpj(), p.getProviderName(), p.getUpdateDate(), p.getUpdateUser(), p.getCreateDate(), p.getCreateUser()))
                 .collect(Collectors.toList());
     }
+
+    public List<Provider> getProvidersByName(String providerName) {
+        List<Provider> filterProvider = providerRepository.findByProviderNameContainingIgnoreCase(providerName);
+
+        if (filterProvider.isEmpty()) {
+            throw new NullPointerException("Fornecedor não encontrado");
+        } else {
+            return filterProvider;
+        }
+    }
 }

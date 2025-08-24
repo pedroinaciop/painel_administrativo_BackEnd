@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record EditClientDTO(
-        Long clientId,
+        Long client_id,
         ClientType clientType,
         boolean active,
 

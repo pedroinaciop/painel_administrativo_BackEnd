@@ -41,7 +41,7 @@ public class ClientController {
     }
 
     @GetMapping("/editar/clientes/{id}")
-    public ClientDTO getClientById(@PathVariable Long id) {
+    public ClientDTO getClientById(@PathVariable("id") Long id) {
         return clientService.getClientDTOById(id);
     }
 

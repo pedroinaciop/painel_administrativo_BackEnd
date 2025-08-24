@@ -34,7 +34,6 @@ public class ProviderController {
     @PostMapping("/cadastros/fornecedores/novo")
     public void registerProvider(@RequestBody ProviderDTO dados) {
         providerRepository.save(new Provider(dados));
-        System.out.printf(String.valueOf(dados));
     }
 
     @Transactional
@@ -47,5 +46,10 @@ public class ProviderController {
     @PutMapping("editar/fornecedores/{id}")
     public void editProvider(@PathVariable("id") Long id, @RequestBody EditProviderDTO dto) {
         providerService.editProvider(id, dto.providerName(), dto.updateDate(), dto.updateUser());
+    }
+
+    @GetMapping("/fornecedores/{providerName}")
+    public List<Provider> findProviderByName(@PathVariable("providerName") String providerName) {
+        return providerService.getProvidersByName(providerName);
     }
 }

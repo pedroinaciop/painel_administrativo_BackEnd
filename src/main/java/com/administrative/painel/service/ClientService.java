@@ -37,8 +37,8 @@ public class ClientService {
         return convertClients(clientRepository.findAll());
     }
 
-    public void editClient(Long clientId, ClientType clientType, boolean active, String fullName, String fantasyName, String stateRegistration, String municipalRegistration, StatusTax statusTax, LocalDate birthDate, String cpfCnpj, String rg, String email, String phone, String secondaryPhone, String cep, String street, Integer numberAddress, String neighborhood, String city, String ibgeCityCode, String state, String complement, String country, String notes, Boolean exemptStateRegistration, TaxRegimeCode taxRegimeCode, LocalDateTime updateDate, String updateUser) {
-        Client client = getClientById(clientId);
+    public void editClient(Long client_id, ClientType clientType, boolean active, String fullName, String fantasyName, String stateRegistration, String municipalRegistration, StatusTax statusTax, LocalDate birthDate, String cpfCnpj, String rg, String email, String phone, String secondaryPhone, String cep, String street, Integer numberAddress, String neighborhood, String city, String ibgeCityCode, String state, String complement, String country, String notes, Boolean exemptStateRegistration, TaxRegimeCode taxRegimeCode, LocalDateTime updateDate, String updateUser) {
+        Client client = getClientById(client_id);
 
         client.setClientType(clientType);
         client.setActive(active);

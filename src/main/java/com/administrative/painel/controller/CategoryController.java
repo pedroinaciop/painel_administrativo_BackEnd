@@ -8,6 +8,7 @@ import com.administrative.painel.dto.CategoryDTO;
 import com.administrative.painel.model.Category;
 import jakarta.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/")
@@ -46,5 +47,10 @@ public class CategoryController {
     @PutMapping("/editar/categorias/{id}")
     public void editCategoryByID(@PathVariable("id") Long id, @RequestBody EditCategoryDTO dto) {
         categoryService.editCategoryByID(id, dto.categoryName(), dto.updateDate(), dto.updateUser());
+    }
+
+    @GetMapping("/categorias/{categoryName}")
+    public List<Category> findCategoryByName(@PathVariable("categoryName") String categoryName) {
+        return categoryService.getCategoriesByName(categoryName);
     }
 }

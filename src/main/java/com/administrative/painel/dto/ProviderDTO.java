@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public record ProviderDTO(
         Long provider_id,
         String cnpj,
-        String provider,
+        String providerName,
 
         @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
         LocalDateTime updateDate,

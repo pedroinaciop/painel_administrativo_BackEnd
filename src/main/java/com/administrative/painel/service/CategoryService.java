@@ -55,4 +55,14 @@ public class CategoryService {
                 .map(c -> new CategoryDTO(c.getCategory_id(), c.getCategoryName(), c.getUpdateDate(), c.getUpdateUser(), c.getCreateDate(), c.getCreateUser()))
                 .collect(Collectors.toList());
     }
+
+    public List<Category> getCategoriesByName(String categoryName) {
+        List<Category> filterCategory = categoryRepository.findByCategoryNameContainingIgnoreCase(categoryName);
+
+        if (filterCategory.isEmpty()) {
+            throw new NullPointerException("Categoria não encontrada");
+        } else {
+            return filterCategory;
+        }
+    }
 }

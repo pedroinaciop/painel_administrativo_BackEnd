@@ -10,11 +10,11 @@ import lombok.EqualsAndHashCode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(of = "clientId")
+@EqualsAndHashCode(of = "client_id")
 @Entity(name = "clients")
 public class Client {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long clientId;
+    private Long client_id;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -97,8 +97,8 @@ public class Client {
     public Client() {
     }
 
-    public Client(Long clientId, String fullName, ClientType clientType, String cpfCnpj, boolean active, String fantasyName, String country, String stateRegistration, String municipalRegistration, StatusTax statusTax, LocalDate birthDate, String rg, String email, String phone, String secondaryPhone, String cep, String street, Integer numberAddress, String neighborhood, String city, String ibgeCityCode, String state, String complement, String notes, Boolean exemptStateRegistration, TaxRegimeCode taxRegimeCode, LocalDateTime updateDate, String updateUser, LocalDateTime createDate, String createUser) {
-        this.clientId = clientId;
+    public Client(Long client_id, String fullName, ClientType clientType, String cpfCnpj, boolean active, String fantasyName, String country, String stateRegistration, String municipalRegistration, StatusTax statusTax, LocalDate birthDate, String rg, String email, String phone, String secondaryPhone, String cep, String street, Integer numberAddress, String neighborhood, String city, String ibgeCityCode, String state, String complement, String notes, Boolean exemptStateRegistration, TaxRegimeCode taxRegimeCode, LocalDateTime updateDate, String updateUser, LocalDateTime createDate, String createUser) {
+        this.client_id = client_id;
         this.fullName = fullName;
         this.clientType = clientType;
         this.cpfCnpj = cpfCnpj;
@@ -131,7 +131,7 @@ public class Client {
     }
 
     public Client(ClientDTO dados) {
-        this.clientId = dados.clientId();
+        this.client_id = dados.client_id();
         this.clientType = dados.clientType();
         this.active = dados.active();
 
@@ -166,7 +166,7 @@ public class Client {
     }
 
     public Long getClientId() {
-        return clientId;
+        return client_id;
     }
 
     public ClientType getClientType() {

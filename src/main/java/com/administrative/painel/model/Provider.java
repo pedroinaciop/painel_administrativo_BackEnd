@@ -9,8 +9,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import lombok.*;
 
-@Setter
-@Getter
 @EqualsAndHashCode(of = "provider_id")
 @Entity(name = "providers")
 public class Provider {
@@ -45,7 +43,7 @@ public class Provider {
     public Provider(ProviderDTO dados) {
         this.provider_id = dados.provider_id();
         this.cnpj = dados.cnpj();
-        this.providerName = dados.provider();
+        this.providerName = dados.providerName();
         this.updateDate = dados.updateDate();
         this.updateUser = dados.updateUser();
         this.createDate = dados.createDate();
@@ -60,5 +58,65 @@ public class Provider {
         this.updateUser = updateUser;
         this.createDate = createDate;
         this.createUser = createUser;
+    }
+
+    public Long getProvider_id() {
+        return provider_id;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public String getProviderName() {
+        return providerName;
+    }
+
+    public LocalDateTime getUpdateDate() {
+        return updateDate;
+    }
+
+    public String getUpdateUser() {
+        return updateUser;
+    }
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
+    }
+
+    public void setUpdateDate(LocalDateTime updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser;
+    }
+
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
